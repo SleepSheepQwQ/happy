@@ -34,9 +34,16 @@ jobs:
           chmod +x gradlew tools/tailcat/build.sh
           bash tools/tailcat/build.sh
 
+      # -Phappy.debuggable=false: AOT-compile the dev variant instead of running it
+      # interpreted. -Phappy.callAgentV3Id: the preview variant refuses to build
+      # without a voice agent id; a placeholder is enough for a local build.
       - name: Assemble debug + preview APKs
         working-directory: packages/happy-android
-        run: ./gradlew --no-daemon --stacktrace assembleDebug assemblePreview
+        run: |
+          ./gradlew --no-daemon --stacktrace \
+            -Phappy.debuggable=false \
+            -Phappy.callAgentV3Id=00000000-0000-0000-0000-000000000000 \
+            assembleDebug assemblePreview
 
       - name: Collect APKs
         run: find packages/happy-android/app/build/outputs/apk -name '*.apk' -exec ls -lh {} \;
