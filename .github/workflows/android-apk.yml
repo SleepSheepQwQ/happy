@@ -23,6 +23,8 @@ jobs:
           java-version: '21'
 
       - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools'
 
       - uses: gradle/actions/setup-gradle@v4
 
@@ -30,7 +32,7 @@ jobs:
         run: |
           java -version
           echo "ANDROID_HOME=$ANDROID_HOME"
-          ls $ANDROID_HOME/platforms || true
+          ls "$ANDROID_HOME/platforms" || true
 
       - name: Vendor tailcat-kotlin into vendor/maven
         working-directory: packages/happy-android
@@ -44,8 +46,7 @@ jobs:
         run: ./gradlew --no-daemon --stacktrace assembleDebug
 
       - name: Collect APKs
-        run: |
-          ls -la packages/happy-android/app/build/outputs/apk/debug/
+        run: ls -la packages/happy-android/app/build/outputs/apk/debug/
 
       - uses: actions/upload-artifact@v4
         with:
