@@ -42,7 +42,7 @@ jobs:
         run: |
           ./gradlew --no-daemon --stacktrace \
             -Phappy.debuggable=false \
-            -Phappy.callAgentV3Id=00000000-0000-0000-0000-000000000000 \
+            -Phappy.callAgentV3Id=agent_0123456789abcdef0123456789abcdef \
             assembleDebug assemblePreview
 
       - name: Collect APKs
