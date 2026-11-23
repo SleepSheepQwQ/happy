@@ -110,6 +110,9 @@ object ModeOptions {
         ModeOption("gpt-5.6-sol", "GPT-5.6 Sol"),
         ModeOption("gpt-5.6-terra", "GPT-5.6 Terra"),
         ModeOption("gpt-5.6-luna", "GPT-5.6 Luna"),
+        // DeepSeek: a custom provider pointed at api.deepseek.com.
+        ModeOption("deepseek-v4-pro", "DeepSeek V4 Pro", "deepseek.com"),
+        ModeOption("deepseek-flash", "DeepSeek Flash", "deepseek.com"),
     )
 
     private val geminiModelModes = listOf(
@@ -191,6 +194,9 @@ object ModeOptions {
         "gpt-5.6-sol" to listOf("low", "medium", "high", "xhigh", "max", "ultra"),
         "gpt-5.6-terra" to listOf("low", "medium", "high", "xhigh", "max", "ultra"),
         "gpt-5.6-luna" to listOf("low", "medium", "high", "xhigh", "max"),
+        // DeepSeek reports low/high/max only.
+        "deepseek-v4-pro" to listOf("low", "high", "max"),
+        "deepseek-flash" to listOf("low", "high", "max"),
     )
 
     // An unknown Codex model gets the set every gpt-5 accepts.
